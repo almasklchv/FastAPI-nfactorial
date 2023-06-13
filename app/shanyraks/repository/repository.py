@@ -1,5 +1,6 @@
 from bson.objectid import ObjectId
 from pymongo.database import Database
+from fastapi import Response
 
 
 class ShanyrakRepository:
@@ -20,14 +21,14 @@ class ShanyrakRepository:
         self.database['shanyraks'].insert_one(payload)
 
     def get_shanyrak(self, user_id: str, shanyrak_id: str):
-        shanyraq = self.database["shanyraks"].find_one(
+        shanyrak = self.database["shanyraks"].find_one(
             {
                 "_id": ObjectId(shanyrak_id),
             }
         )
 
-        if (shanyraq['user_id'] == user_id):
-            return shanyraq
+        if (shanyrak['user_id'] == user_id):
+            return shanyrak
 
     def update_shanyrak(self, id: str, data: dict):
         self.database['shanyraks'].update_one(
@@ -36,3 +37,16 @@ class ShanyrakRepository:
                 "$set": data
             }
         )
+
+    def delete_shanyrak(self, user_id: str, shanyrak_id: str):
+        shanyrak = self.database["shanyraks"].find_one(
+            {
+                "_id": ObjectId(shanyrak_id),
+            }
+        )
+        if (user_id == shanyrak['user_id']):
+            self.database["shanyraks"].delete_one(
+                filter={"_id": ObjectId(shanyrak_id)},
+            )   
+            return Response(status_code=200)
+        return Response(status_code=404)
