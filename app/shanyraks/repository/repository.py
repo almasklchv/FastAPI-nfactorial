@@ -28,3 +28,11 @@ class ShanyrakRepository:
 
         if (shanyraq['user_id'] == user_id):
             return shanyraq
+
+    def update_shanyrak(self, id: str, data: dict):
+        self.database['shanyraks'].update_one(
+            filter={"_id": ObjectId(id)},
+            update={
+                "$set": data
+            }
+        )
