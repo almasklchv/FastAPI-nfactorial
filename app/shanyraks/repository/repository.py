@@ -48,5 +48,3 @@ class ShanyrakRepository:
             self.database["shanyraks"].delete_one(
                 filter={"_id": ObjectId(shanyrak_id)},
             )   
-            return Response(status_code=200)
-        return Response(status_code=404)

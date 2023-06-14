@@ -1,5 +1,5 @@
 from app.utils import AppModel
-from fastapi import Depends
+from fastapi import Depends, Response
 from ..service import Service, get_service
 from app.auth.adapters.jwt_service import JWTData
 from app.auth.router.dependencies import parse_jwt_user_data
@@ -27,4 +27,6 @@ def create_shanyrak(
     shanyrak['user_id'] = jwt_data.user_id
 
     svc.repository.create_shanyrak(shanyrak)
-    return CreateShanyrakResponse(_id=jwt_data.user_id)
+    CreateShanyrakResponse(_id=jwt_data.user_id)
+    return Response(status_code=200, content = '{"id": ' + '"' + str(jwt_data.user_id) + '"' + "}")
+    

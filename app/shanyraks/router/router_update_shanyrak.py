@@ -19,4 +19,4 @@ class UpdateShanyrakResponse(AppModel):
 @router.patch("/{id}", status_code=200, response_model=UpdateShanyrakResponse)
 def update_shanyrak(id: str, input: UpdateShanyrakResponse, svc: Service = Depends(get_service)) -> dict[str, str]:
     svc.repository.update_shanyrak(id, input.dict())
-    return Response(status_code=200)
+    return Response(status_code=200, content="OK")

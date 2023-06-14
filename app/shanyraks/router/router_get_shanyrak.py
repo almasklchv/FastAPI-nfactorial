@@ -26,6 +26,6 @@ def get_shanyrak(
 ):
     shanyrak = svc.repository.get_shanyrak(jwt_data.user_id, shanyrak_id)
     if (shanyrak):
-        return shanyrak
+        return Response(status_code=200, content=str(shanyrak))
     else:
         return Response(status_code=401)

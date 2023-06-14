@@ -10,4 +10,4 @@ def delete_shanyrak(
     svc: Service = Depends(get_service)
 ) -> dict[str, str]:
     svc.repository.delete_shanyrak(user_id, shanyrak_id)
-    return Response(status_code = 200)
+    return Response(status_code = 200, content="OK")
