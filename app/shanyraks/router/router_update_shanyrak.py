@@ -14,7 +14,6 @@ class UpdateShanyrakResponse(AppModel):
     area: float
     rooms_count: int
     description: str
-    user_id: str
 
 @router.patch("/{id}", status_code=200, response_model=UpdateShanyrakResponse)
 def update_shanyrak(id: str, input: UpdateShanyrakResponse, svc: Service = Depends(get_service)) -> dict[str, str]:

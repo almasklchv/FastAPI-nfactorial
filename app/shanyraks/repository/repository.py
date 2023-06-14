@@ -38,6 +38,14 @@ class ShanyrakRepository:
             }
         )
 
+    def push_media_to_shanyrak(self, id: str, data: dict):
+        self.database['shanyraks'].update_one(
+            filter={"_id": ObjectId(id)},
+            update={
+                "$set": data
+            },
+        )
+
     def delete_shanyrak(self, user_id: str, shanyrak_id: str):
         shanyrak = self.database["shanyraks"].find_one(
             {

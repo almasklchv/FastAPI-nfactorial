@@ -5,9 +5,6 @@ from fastapi import Depends, Response
 from app.auth.adapters.jwt_service import JWTData
 from app.auth.router.dependencies import parse_jwt_user_data
 
-class GetShanyrakRequest(AppModel):
-    _id: str
-
 class GetShanyrakResponse(AppModel):
     _id: str
     type: str
@@ -17,6 +14,7 @@ class GetShanyrakResponse(AppModel):
     rooms_count: int
     description: str
     user_id: str
+    media: list
 
 @router.get("/{id}", response_model=GetShanyrakResponse)
 def get_shanyrak(
