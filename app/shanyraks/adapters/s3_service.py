@@ -18,3 +18,5 @@ class S3Service:
         object_url = f'https://s3-{bucket_location["LocationConstraint"]}.amazonaws.com/{bucket}/{filekey}'
 
         return object_url
+
+        
